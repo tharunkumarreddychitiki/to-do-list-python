@@ -1,0 +1,48 @@
+def menu(tasks) :
+    ''' prints the choices that are to be choosen.'''
+    print("\nTo-Do List Menu:\n1. View To-Do List\n2. Add Task\n3. Remove Task\n4. Exit")
+
+def view_tasks(tasks):       
+    ''' Prints the items or tasks in the list using for loop method.'''
+    if len(tasks) == 0 :
+        print("\nYour to-do list is empty.")
+    else:
+        for i in range(len(tasks)):
+            print("Your To-Do List:")
+            print(f"{i+1}. {tasks[i]}")
+
+def add_task(tasks):
+    ''' add a new item or task into the list using append() method.'''
+    task = input("\nEnter the task you want to add: ")
+    tasks.append(task)
+    print(f"Task '{task}' added to the list.")
+
+def remove_task(tasks):
+    ''' removes a task or item in the list using pop() method.'''
+    view_tasks(tasks)
+    try:
+        task_num = int(input("\nEnter the number of the task you want to remove: "))
+        if 1 <= task_num <= len(tasks):
+            removed_task = tasks.pop(task_num - 1)
+            print(f"Task '{removed_task}' removed from the list.")
+        else:
+            print("Invalid task number.")
+    except ValueError:
+        print("Please enter a valid number.")
+
+tasks = []
+while True:
+    menu(tasks)
+    choice = input("\nEnter your choice (1/2/3/4): ")
+
+    if choice == '1':
+        view_tasks(tasks)
+    elif choice == '2':
+        add_task(tasks)
+    elif choice == '3':
+        remove_task(tasks)
+    elif choice == '4':
+        print("Have a great day!")
+        break
+    else:
+        print("Invalid choice. Please select a valid option.")
